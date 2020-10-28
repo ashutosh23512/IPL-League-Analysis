@@ -57,5 +57,14 @@ public class IPLAnalyser {
 			}
 		}
 	}
+	public String StrikeRate() throws CSVException {
+		if (runsList.size() == 0) {
+			throw new CSVException("No IPL Data");
+		}
+		Comparator<Runs> censusComparator = Comparator.comparing(ipl -> ipl.SR);
+		this.reverseSort(runsList, censusComparator);
+		String json = new Gson().toJson(runsList);
+		return json;
+	}
 
 }
