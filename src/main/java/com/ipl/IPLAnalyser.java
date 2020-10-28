@@ -57,12 +57,36 @@ public class IPLAnalyser {
 			}
 		}
 	}
+	
+	private void Sort(List<Runs> list, Comparator<Runs> censusComparator) {
+		for (int i = 0; i < list.size() - 1; i++) {
+			for (int j = 0; j < list.size() - 1 - i; j++) {
+				Runs census1 = list.get(j);
+				Runs census2 = list.get(j + 1);
+				if (censusComparator.compare(census1, census2) > 0) {
+					list.set(j, census2);
+					list.set(j + 1, census1);
+				}
+			}
+		}
+	}
+
 	public String StrikeRate() throws CSVException {
 		if (runsList.size() == 0) {
 			throw new CSVException("No IPL Data");
 		}
 		Comparator<Runs> censusComparator = Comparator.comparing(ipl -> ipl.SR);
 		this.reverseSort(runsList, censusComparator);
+		String json = new Gson().toJson(runsList);
+		return json;
+	}
+
+	public String SixesAndFours() throws CSVException {
+		if (runsList.size() == 0) {
+			throw new CSVException("No IPL Data");
+		}
+		Comparator<Runs> censusComparator = Comparator.comparing(ipl -> ipl.sixes + ipl.fours);
+		this.Sort(runsList, censusComparator);
 		String json = new Gson().toJson(runsList);
 		return json;
 	}

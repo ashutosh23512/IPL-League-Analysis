@@ -42,8 +42,23 @@ public class IPLAnalyserTest {
 		} catch (CSVException e) {
 			System.out.println(e.getMessage());
 		}
-		System.out.println(sortedData);
+		// System.out.println(sortedData);
 		Runs[] censusCsv = new Gson().fromJson(sortedData, Runs[].class);
 		Assert.assertEquals("Ishant Sharma", censusCsv[0].Player);
+	}
+
+	@Test
+	public void MostFoursAndSixes() {
+		int noOfEntries = 0;
+		String sortedData = null;
+		try {
+			noOfEntries = ipl.loadMostRunsCSV(RunsCSV);
+			sortedData = ipl.SixesAndFours();
+		} catch (CSVException e) {
+			System.out.println(e.getMessage());
+		}
+		System.out.println(sortedData);
+		Runs[] censusCsv = new Gson().fromJson(sortedData, Runs[].class);
+		Assert.assertEquals("Andre Russell", censusCsv[100].Player);
 	}
 }
