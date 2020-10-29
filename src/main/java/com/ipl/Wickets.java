@@ -63,4 +63,12 @@ public class Wickets {
 	public double getEC() {
 		return econ;
 	}
+
+	public double getFourW() {
+		return four;
+	}
+
+	public double getFiveW() {
+		return five;
+	}
 }
