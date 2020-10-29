@@ -20,12 +20,25 @@ public class IPLAnalyserTestBowling {
 	}
 
 	@Test
-	public void givenWicketsCSVFile_ShouldSortAccordingBowlingAverage() {
-		int noOfEntries = 0;
-		String sortedData = null;
+	public void BowlingAverage() {
+
 		try {
 			noOfEntries = ipl.loadMostWktsCSV(WicketsCSV);
 			sortedData = ipl.MaximumBowlingAverage();
+		} catch (CSVException e) {
+			System.out.println(e.getMessage());
+		}
+		System.out.println(sortedData);
+		Wickets[] censusCsv = new Gson().fromJson(sortedData, Wickets[].class);
+		Assert.assertEquals("Krishnappa Gowtham", censusCsv[0].Player);
+	}
+
+	@Test
+	public void TopStrikeRates() {
+
+		try {
+			noOfEntries = ipl.loadMostWktsCSV(WicketsCSV);
+			sortedData = ipl.BowlersStrikeRate();
 		} catch (CSVException e) {
 			System.out.println(e.getMessage());
 		}
