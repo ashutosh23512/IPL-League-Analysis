@@ -1,5 +1,7 @@
 package com.ipl;
 
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +19,6 @@ public class IPLAnalyserTest {
 	@Before
 	public void setUp() {
 		ipl = new IPLAnalyser();
-
 	}
 
 	@Test
@@ -111,9 +112,21 @@ public class IPLAnalyserTest {
 		} catch (CSVException e) {
 			System.out.println(e.getMessage());
 		}
-		System.out.println(data);
 		Runs[] censusCsv = new Gson().fromJson(data, Runs[].class);
 		Assert.assertEquals("David Warner ", censusCsv[100].Player);
 	}
-
+	@Test
+	public void givenMostRunsCSVFile_ShouldReturn_BestBattingAverageButWithZero100sAndZero50s() {
+		int noOfEntries = 0;
+		List<Runs> data = null;
+		try {
+			noOfEntries = ipl.loadMostRunsCSV(RunsCSV);
+			data = ipl.getPlayerWithZero100sOrZero50sButBestBattingAverage();
+		} catch (CSVException e) {
+			System.out.println(e.getMessage());
+		}
+		System.out.println(data);
+		Assert.assertEquals("Marcus Stoinis", data.get(55).Player);
+	}
+	
 }

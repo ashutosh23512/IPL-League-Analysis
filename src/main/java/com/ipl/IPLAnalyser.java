@@ -42,7 +42,8 @@ public class IPLAnalyser {
 		if (runsList.size() == 0) {
 			throw new CSVException("No IPL Data");
 		}
-		Comparator<Runs> censusComparator = Comparator.comparing(ipl -> ipl.getAvg());
+		Comparator<Runs> censusComparator = Comparator
+											.comparing(ipl -> ipl.getAvg());
 		this.reverseSort(runsList, censusComparator);
 		String json = new Gson().toJson(runsList);
 		return json;
@@ -78,7 +79,8 @@ public class IPLAnalyser {
 		if (runsList.size() == 0) {
 			throw new CSVException("No IPL Data");
 		}
-		Comparator<Runs> censusComparator = Comparator.comparing(ipl -> ipl.SR);
+		Comparator<Runs> censusComparator = Comparator
+											.comparing(ipl -> ipl.SR);
 		this.reverseSort(runsList, censusComparator);
 		String json = new Gson().toJson(runsList);
 		return json;
@@ -88,7 +90,8 @@ public class IPLAnalyser {
 		if (runsList.size() == 0) {
 			throw new CSVException("No IPL Data");
 		}
-		Comparator<Runs> censusComparator = Comparator.comparing(ipl -> ipl.sixes + ipl.fours);
+		Comparator<Runs> censusComparator = Comparator
+											.comparing(ipl -> ipl.sixes + ipl.fours);
 		this.Sort(runsList, censusComparator);
 		String json = new Gson().toJson(runsList);
 		return json;
@@ -98,7 +101,8 @@ public class IPLAnalyser {
 		if (runsList.size() == 0) {
 			throw new CSVException("No IPL Data");
 		}
-		Comparator<Runs> censusComparator = Comparator.comparing(ipl -> ipl.sixes + ipl.fours);
+		Comparator<Runs> censusComparator = Comparator
+											.comparing(ipl -> ipl.sixes + ipl.fours);
 		this.reverseSort(runsList, censusComparator);
 		runsList.stream().sorted(Comparator.comparing(ipl -> ipl.SR));
 		String json = new Gson().toJson(runsList);
@@ -109,7 +113,8 @@ public class IPLAnalyser {
 		if (runsList.size() == 0) {
 			throw new CSVException("No IPL Data");
 		}
-		Comparator<Runs> censusComparator = Comparator.comparing(ipl -> ipl.getAvg());
+		Comparator<Runs> censusComparator = Comparator
+											.comparing(ipl -> ipl.getAvg());
 		this.reverseSort(runsList, censusComparator);
 		runsList.stream().sorted(Comparator.comparing(ipl -> ipl.SR));
 		String json = new Gson().toJson(runsList);
@@ -120,7 +125,8 @@ public class IPLAnalyser {
 		if (runsList.size() == 0) {
 			throw new CSVException("No IPL Data");
 		}
-		Comparator<Runs> censusComparator = Comparator.comparing(ipl -> ipl.getAvg());
+		Comparator<Runs> censusComparator = Comparator
+											.comparing(ipl -> ipl.getAvg());
 		this.reverseSort(runsList, censusComparator);
 		runsList.stream().sorted(Comparator.comparing(ipl -> ipl.runs));
 		String sortedBatting = new Gson().toJson(runsList);
@@ -131,7 +137,8 @@ public class IPLAnalyser {
 		if (wktsList.size() == 0) {
 			throw new CSVException("No IPL Data");
 		}
-		Comparator<Wickets> censusComparator = Comparator.comparing(ipl -> ipl.getAvg());
+		Comparator<Wickets> censusComparator = Comparator
+												.comparing(ipl -> ipl.getAvg());
 		this.reverseSort(wktsList, censusComparator);
 		String json = new Gson().toJson(wktsList);
 		return json;
@@ -141,7 +148,8 @@ public class IPLAnalyser {
 		if (wktsList.size() == 0 || wktsList == null) {
 			throw new CSVException("No IPL Data");
 		}
-		Comparator<Wickets> censusComparator = Comparator.comparing(ipl -> ipl.getSR());
+		Comparator<Wickets> censusComparator = Comparator
+												.comparing(ipl -> ipl.getSR());
 		this.reverseSort(wktsList, censusComparator);
 		String json = new Gson().toJson(wktsList);
 		return json;
@@ -151,7 +159,8 @@ public class IPLAnalyser {
 		if (wktsList.size() == 0 || wktsList == null) {
 			throw new CSVException("No IPL Data");
 		}
-		Comparator<Wickets> censusComparator = Comparator.comparing(ipl -> ipl.getEC());
+		Comparator<Wickets> censusComparator = Comparator
+												.comparing(ipl -> ipl.getEC());
 		this.Sort(wktsList, censusComparator);
 		String json = new Gson().toJson(wktsList);
 		return json;
@@ -161,9 +170,11 @@ public class IPLAnalyser {
 		if (wktsList.size() == 0 || wktsList == null) {
 			throw new CSVException("No IPL Data");
 		}
-		Comparator<Wickets> censusComparator = Comparator.comparing(ipl -> ipl.getFourW() + ipl.getFiveW());
+		Comparator<Wickets> censusComparator = Comparator
+												.comparing(ipl -> ipl.getFourW() + ipl.getFiveW());
 		this.reverseSort(wktsList, censusComparator);
-		wktsList.stream().sorted(Comparator.comparing(ipl -> ipl.getSR()));
+		wktsList.stream().sorted(Comparator
+								.comparing(ipl -> ipl.getSR()));
 		String json = new Gson().toJson(wktsList);
 		return json;
 	}
@@ -172,7 +183,8 @@ public class IPLAnalyser {
 		if (wktsList.size() == 0 || wktsList == null) {
 			throw new CSVException("No IPL Data");
 		}
-		Comparator<Wickets> censusComparator = Comparator.comparing(ipl -> ipl.getAvg());
+		Comparator<Wickets> censusComparator = Comparator
+												.comparing(ipl -> ipl.getAvg());
 		this.reverseSort(wktsList, censusComparator);
 		wktsList.stream().sorted(Comparator.comparing(ipl -> ipl.getSR()));
 		String json = new Gson().toJson(wktsList);
@@ -183,7 +195,8 @@ public class IPLAnalyser {
 		if (wktsList.size() == 0 || wktsList == null) {
 			throw new CSVException("No IPL Data");
 		}
-		Comparator<Wickets> censusComparator = Comparator.comparing(ipl -> ipl.getW() * ipl.getAvg());
+		Comparator<Wickets> censusComparator = Comparator
+												.comparing(ipl -> ipl.getW() * ipl.getAvg());
 		this.reverseSort(wktsList, censusComparator);
 		String json = new Gson().toJson(wktsList);
 		return json;
@@ -194,12 +207,14 @@ public class IPLAnalyser {
 		List<String> bestList = new ArrayList<>();
 
 		List<Runs> battingAvg = runsList.stream()
-				.sorted((playerA, playerB) -> Double.compare(playerA.getAvg(), playerB.getAvg()))
+										.sorted((playerA, playerB) -> Double
+										.compare(playerA.getAvg(), playerB.getAvg()))
 				.collect(Collectors.toList());
 
 		List<Wickets> bowlingAvg = wktsList.stream()
-				.sorted((playerA, playerB) -> Double.compare(playerA.getAvg(), playerB.getAvg()))
-				.collect(Collectors.toList());
+											.sorted((playerA, playerB) -> Double.
+											compare(playerA.getAvg(), playerB.getAvg()))
+											.collect(Collectors.toList());
 
 		for (Runs playerBat : battingAvg) {
 			for (Wickets playerBowler : bowlingAvg) {
@@ -216,10 +231,14 @@ public class IPLAnalyser {
 		List<String> bestList = new ArrayList<>();
 
 		List<Runs> battingAvg = runsList.stream()
-				.sorted((playerA, playerB) -> Double.compare(playerA.runs, playerB.runs)).collect(Collectors.toList());
+										.sorted((playerA, playerB) -> Double
+										.compare(playerA.runs, playerB.runs))
+										.collect(Collectors.toList());
 
 		List<Wickets> bowlingAvg = wktsList.stream()
-				.sorted((playerA, playerB) -> Double.compare(playerA.wkts, playerB.wkts)).collect(Collectors.toList());
+											.sorted((playerA, playerB) -> Double
+											.compare(playerA.wkts, playerB.wkts))
+											.collect(Collectors.toList());
 
 		for (Runs playerBat : battingAvg) {
 			for (Wickets playerBowler : bowlingAvg) {
@@ -240,5 +259,16 @@ public class IPLAnalyser {
 		runsList.stream().sorted(Comparator.comparing(ipl -> ipl.hundreds));
 		String sortedBatting = new Gson().toJson(runsList);
 		return sortedBatting;
+	}
+
+	public List<Runs> getPlayerWithZero100sOrZero50sButBestBattingAverage() throws CSVException {
+		if (runsList == null || runsList.size() == 0) {
+			throw new CSVException("File error");
+		}
+		List<Runs> list = runsList.stream()
+								  .filter(player -> player.hundreds == 0 && player.fiftys == 0)
+								  .sorted((player1, player2) -> Double.compare(player1.getAvg(), player2.getAvg()))
+								  .collect(Collectors.toList());
+		return list;
 	}
 }
