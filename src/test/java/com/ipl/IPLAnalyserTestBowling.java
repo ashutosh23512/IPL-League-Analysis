@@ -132,4 +132,5 @@ public class IPLAnalyserTestBowling {
 		Assert.assertEquals("Hardik Pandya", sortedData.get(47));
 
 	}
+
 }
