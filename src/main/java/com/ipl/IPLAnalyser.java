@@ -45,11 +45,11 @@ public class IPLAnalyser {
 		return json;
 	}
 
-	private void reverseSort(List<Runs> list, Comparator<Runs> censusComparator) {
+	private <e> void reverseSort(List<e> list, Comparator<e> censusComparator) {
 		for (int i = 0; i < list.size() - 1; i++) {
 			for (int j = 0; j < list.size() - 1; j++) {
-				Runs census1 = list.get(j);
-				Runs census2 = list.get(j + 1);
+				e census1 = list.get(j);
+				e census2 = list.get(j + 1);
 				if (censusComparator.compare(census1, census2) < 0) {
 					list.set(j, census2);
 					list.set(j + 1, census1);
@@ -58,11 +58,11 @@ public class IPLAnalyser {
 		}
 	}
 
-	private void Sort(List<Runs> list, Comparator<Runs> censusComparator) {
+	private <e> void Sort(List<e> list, Comparator<e> censusComparator) {
 		for (int i = 0; i < list.size() - 1; i++) {
 			for (int j = 0; j < list.size() - 1 - i; j++) {
-				Runs census1 = list.get(j);
-				Runs census2 = list.get(j + 1);
+				e census1 = list.get(j);
+				e census2 = list.get(j + 1);
 				if (censusComparator.compare(census1, census2) > 0) {
 					list.set(j, census2);
 					list.set(j + 1, census1);
@@ -112,7 +112,7 @@ public class IPLAnalyser {
 		String json = new Gson().toJson(runsList);
 		return json;
 	}
-	
+
 	public String MaximumRunsWithBattingAverage() throws CSVException {
 		if (runsList.size() == 0) {
 			throw new CSVException("No IPL Data");
@@ -122,5 +122,15 @@ public class IPLAnalyser {
 		runsList.stream().sorted(Comparator.comparing(ipl -> ipl.runs));
 		String sortedBatting = new Gson().toJson(runsList);
 		return sortedBatting;
+	}
+
+	public String MaximumBowlingAverage() throws CSVException {
+		if (wktsList.size() == 0) {
+			throw new CSVException("No IPL Data");
+		}
+		Comparator<Wickets> censusComparator = Comparator.comparing(ipl -> ipl.getAvg());
+		this.reverseSort(wktsList, censusComparator);
+		String json = new Gson().toJson(wktsList);
+		return json;
 	}
 }
