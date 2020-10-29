@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import com.opencsv.*;
 import com.google.gson.Gson;
 
@@ -184,5 +187,27 @@ public class IPLAnalyser {
 		this.reverseSort(wktsList, censusComparator);
 		String json = new Gson().toJson(wktsList);
 		return json;
+	}
+	
+	public List<String> getBestBowlerAndBattingAverage() {
+
+		List<String> bestList = new ArrayList<>();
+
+		List<Runs> battingAvg = runsList.stream()
+				.sorted((playerA, playerB) -> Double.compare(playerA.getAvg(), playerB.getAvg()))
+				.collect(Collectors.toList());
+
+		List<Wickets> bowlingAvg = wktsList.stream()
+				.sorted((playerA, playerB) -> Double.compare(playerA.getAvg(), playerB.getAvg()))
+				.collect(Collectors.toList());
+
+		for (Runs playerBat : battingAvg) {
+			for (Wickets playerBowler : bowlingAvg) {
+				if (playerBat.Player.equals(playerBowler.Player)) {
+					bestList.add(playerBat.Player);
+				}
+			}
+		}
+		return bestList;
 	}
 }

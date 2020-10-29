@@ -1,5 +1,7 @@
 package com.ipl;
 
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,8 +11,11 @@ import com.opencsv.CSVException;
 
 public class IPLAnalyserTestBowling {
 	public final String WicketsCSV = "Wkts.csv";
+	public final String RunsCSV = "./Runs.csv";
 	IPLAnalyser ipl = null;
 	int noOfEntries = 0;
+	int noOfEntriesruns = 0;
+	int noOfEntrieswickets = 0;
 	String sortedData = null;
 
 	@Before
@@ -83,7 +88,7 @@ public class IPLAnalyserTestBowling {
 		Wickets[] censusCsv = new Gson().fromJson(sortedData, Wickets[].class);
 		Assert.assertEquals("Krishnappa Gowtham", censusCsv[0].Player);
 	}
-	
+
 	@Test
 	public void oWicketsAndAverage() {
 
@@ -93,8 +98,23 @@ public class IPLAnalyserTestBowling {
 		} catch (CSVException e) {
 			System.out.println(e.getMessage());
 		}
-		System.out.println(sortedData);
+
 		Wickets[] censusCsv = new Gson().fromJson(sortedData, Wickets[].class);
 		Assert.assertEquals("Deepak Chahar", censusCsv[0].Player);
+	}
+
+	@Test
+	public void BattingAvgAndBowlingAvg() {
+		List<String> sortedData = null;
+		try {
+			noOfEntriesruns = ipl.loadMostRunsCSV(RunsCSV);
+			noOfEntrieswickets = ipl.loadMostWktsCSV(WicketsCSV);
+			sortedData = ipl.getBestBowlerAndBattingAverage();
+		} catch (CSVException e) {
+			System.out.println(e.getMessage());
+		}
+		Assert.assertEquals("Andre Russell", sortedData.get(48));
+		Assert.assertEquals("Marcus Stoinis", sortedData.get(47));
+
 	}
 }
