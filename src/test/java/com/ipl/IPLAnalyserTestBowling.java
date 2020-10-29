@@ -28,7 +28,6 @@ public class IPLAnalyserTestBowling {
 		} catch (CSVException e) {
 			System.out.println(e.getMessage());
 		}
-		System.out.println(sortedData);
 		Wickets[] censusCsv = new Gson().fromJson(sortedData, Wickets[].class);
 		Assert.assertEquals("Krishnappa Gowtham", censusCsv[0].Player);
 	}
@@ -42,7 +41,6 @@ public class IPLAnalyserTestBowling {
 		} catch (CSVException e) {
 			System.out.println(e.getMessage());
 		}
-		System.out.println(sortedData);
 		Wickets[] censusCsv = new Gson().fromJson(sortedData, Wickets[].class);
 		Assert.assertEquals("Krishnappa Gowtham", censusCsv[0].Player);
 	}
@@ -55,9 +53,20 @@ public class IPLAnalyserTestBowling {
 		} catch (CSVException e) {
 			System.out.println(e.getMessage());
 		}
-		System.out.println(sortedData);
 		Wickets[] censusCsv = new Gson().fromJson(sortedData, Wickets[].class);
 		Assert.assertEquals("Shivam Dube", censusCsv[0].Player);
 	}
 
+	@Test
+	public void givenMostWktsCSVFile_ShouldLoadAndSortAccordingToBestStrikeRateAnd4w5w() {
+
+		try {
+			noOfEntries = ipl.loadMostWktsCSV(WicketsCSV);
+			sortedData = ipl.StrikeRateAnd4w5w();
+		} catch (CSVException e) {
+			System.out.println(e.getMessage());
+		}
+		Wickets[] censusCsv = new Gson().fromJson(sortedData, Wickets[].class);
+		Assert.assertEquals("Imran Tahir", censusCsv[0].Player);
+	}
 }
