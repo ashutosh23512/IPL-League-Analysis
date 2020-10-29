@@ -76,15 +76,29 @@ public class IPLAnalyserTest {
 	}
 
 	@Test
-	public void BattingAverageAndFouresSixes() {
-		String sortedData = null;
+	public void BattingAverageAndStrikeRate() {
+
 		try {
 			noOfEntries = ipl.loadMostRunsCSV(RunsCSV);
-			sortedData = ipl.BattingAverageWithFouresSixes();
+			sortedData = ipl.BattingAverageWithStrikeRate();
 		} catch (CSVException e) {
 			System.out.println(e.getMessage());
 		}
 		Runs[] censusCsv = new Gson().fromJson(sortedData, Runs[].class);
 		Assert.assertEquals("MS Dhoni", censusCsv[0].Player);
 	}
+
+	@Test
+	public void MostRunsAndBattingAverage() {
+
+		try {
+			noOfEntries = ipl.loadMostRunsCSV(RunsCSV);
+			sortedData = ipl.MaximumRunsWithBattingAverage();
+		} catch (CSVException e) {
+			System.out.println(e.getMessage());
+		}
+		Runs[] censusCsv = new Gson().fromJson(sortedData, Runs[].class);
+		Assert.assertEquals("MS Dhoni", censusCsv[0].Player);
+	}
+
 }
