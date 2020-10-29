@@ -230,4 +230,15 @@ public class IPLAnalyser {
 		}
 		return bestList;
 	}
+
+	public String GreatBattingAverages() throws CSVException {
+		if (runsList == null || runsList.size() == 0) {
+			throw new CSVException("File error");
+		}
+		Comparator<Runs> censusComparator = Comparator.comparing(ipl -> ipl.runs);
+		this.Sort(runsList, censusComparator);
+		runsList.stream().sorted(Comparator.comparing(ipl -> ipl.hundreds));
+		String sortedBatting = new Gson().toJson(runsList);
+		return sortedBatting;
+	}
 }
