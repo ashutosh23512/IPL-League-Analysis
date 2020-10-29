@@ -178,7 +178,7 @@ public class IPLAnalyser {
 		String json = new Gson().toJson(wktsList);
 		return json;
 	}
-	
+
 	public String SortWicketsAndAverage() throws CSVException {
 		if (wktsList.size() == 0 || wktsList == null) {
 			throw new CSVException("No IPL Data");
@@ -188,7 +188,7 @@ public class IPLAnalyser {
 		String json = new Gson().toJson(wktsList);
 		return json;
 	}
-	
+
 	public List<String> getBestBowlerAndBattingAverage() {
 
 		List<String> bestList = new ArrayList<>();
@@ -200,6 +200,26 @@ public class IPLAnalyser {
 		List<Wickets> bowlingAvg = wktsList.stream()
 				.sorted((playerA, playerB) -> Double.compare(playerA.getAvg(), playerB.getAvg()))
 				.collect(Collectors.toList());
+
+		for (Runs playerBat : battingAvg) {
+			for (Wickets playerBowler : bowlingAvg) {
+				if (playerBat.Player.equals(playerBowler.Player)) {
+					bestList.add(playerBat.Player);
+				}
+			}
+		}
+		return bestList;
+	}
+
+	public List<String> getAllRounder() {
+
+		List<String> bestList = new ArrayList<>();
+
+		List<Runs> battingAvg = runsList.stream()
+				.sorted((playerA, playerB) -> Double.compare(playerA.runs, playerB.runs)).collect(Collectors.toList());
+
+		List<Wickets> bowlingAvg = wktsList.stream()
+				.sorted((playerA, playerB) -> Double.compare(playerA.wkts, playerB.wkts)).collect(Collectors.toList());
 
 		for (Runs playerBat : battingAvg) {
 			for (Wickets playerBowler : bowlingAvg) {

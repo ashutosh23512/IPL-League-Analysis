@@ -117,4 +117,19 @@ public class IPLAnalyserTestBowling {
 		Assert.assertEquals("Marcus Stoinis", sortedData.get(47));
 
 	}
+
+	@Test
+	public void AllRounder() {
+		List<String> sortedData = null;
+		try {
+			noOfEntriesruns = ipl.loadMostRunsCSV(RunsCSV);
+			noOfEntrieswickets = ipl.loadMostWktsCSV(WicketsCSV);
+			sortedData = ipl.getAllRounder();
+		} catch (CSVException e) {
+			System.out.println(e.getMessage());
+		}
+		Assert.assertEquals("Andre Russell", sortedData.get(48));
+		Assert.assertEquals("Hardik Pandya", sortedData.get(47));
+
+	}
 }
