@@ -71,4 +71,8 @@ public class Wickets {
 	public double getFiveW() {
 		return five;
 	}
+
+	public double getW() {
+		return wkts;
+	}
 }
