@@ -69,4 +69,18 @@ public class IPLAnalyserTestBowling {
 		Wickets[] censusCsv = new Gson().fromJson(sortedData, Wickets[].class);
 		Assert.assertEquals("Imran Tahir", censusCsv[0].Player);
 	}
+
+	@Test
+	public void StrikeRateAndAverage() {
+
+		try {
+			noOfEntries = ipl.loadMostWktsCSV(WicketsCSV);
+			sortedData = ipl.SortStrikeRateAndAverage();
+		} catch (CSVException e) {
+			System.out.println(e.getMessage());
+		}
+		System.out.println(sortedData);
+		Wickets[] censusCsv = new Gson().fromJson(sortedData, Wickets[].class);
+		Assert.assertEquals("Krishnappa Gowtham", censusCsv[0].Player);
+	}
 }
