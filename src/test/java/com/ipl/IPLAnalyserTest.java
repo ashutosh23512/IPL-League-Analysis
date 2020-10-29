@@ -74,4 +74,17 @@ public class IPLAnalyserTest {
 		Runs[] censusCsv = new Gson().fromJson(sortedData, Runs[].class);
 		Assert.assertEquals("Andre Russell", censusCsv[0].Player);
 	}
+
+	@Test
+	public void BattingAverageAndFouresSixes() {
+		String sortedData = null;
+		try {
+			noOfEntries = ipl.loadMostRunsCSV(RunsCSV);
+			sortedData = ipl.BattingAverageWithFouresSixes();
+		} catch (CSVException e) {
+			System.out.println(e.getMessage());
+		}
+		Runs[] censusCsv = new Gson().fromJson(sortedData, Runs[].class);
+		Assert.assertEquals("MS Dhoni", censusCsv[0].Player);
+	}
 }

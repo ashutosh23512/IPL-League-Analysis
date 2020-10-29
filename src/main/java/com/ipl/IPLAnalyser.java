@@ -57,7 +57,7 @@ public class IPLAnalyser {
 			}
 		}
 	}
-	
+
 	private void Sort(List<Runs> list, Comparator<Runs> censusComparator) {
 		for (int i = 0; i < list.size() - 1; i++) {
 			for (int j = 0; j < list.size() - 1 - i; j++) {
@@ -90,12 +90,23 @@ public class IPLAnalyser {
 		String json = new Gson().toJson(runsList);
 		return json;
 	}
-	
+
 	public String StrikerRateWithFouresSixes() throws CSVException {
 		if (runsList.size() == 0) {
 			throw new CSVException("No IPL Data");
 		}
 		Comparator<Runs> censusComparator = Comparator.comparing(ipl -> ipl.sixes + ipl.fours);
+		this.reverseSort(runsList, censusComparator);
+		runsList.stream().sorted(Comparator.comparing(ipl -> ipl.SR));
+		String json = new Gson().toJson(runsList);
+		return json;
+	}
+
+	public String BattingAverageWithFouresSixes() throws CSVException {
+		if (runsList.size() == 0) {
+			throw new CSVException("No IPL Data");
+		}
+		Comparator<Runs> censusComparator = Comparator.comparing(ipl -> ipl.getAvg());
 		this.reverseSort(runsList, censusComparator);
 		runsList.stream().sorted(Comparator.comparing(ipl -> ipl.SR));
 		String json = new Gson().toJson(runsList);
