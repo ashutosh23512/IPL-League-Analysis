@@ -47,4 +47,17 @@ public class IPLAnalyserTestBowling {
 		Assert.assertEquals("Krishnappa Gowtham", censusCsv[0].Player);
 	}
 
+	@Test
+	public void BestEconomy() {
+		try {
+			noOfEntries = ipl.loadMostWktsCSV(WicketsCSV);
+			sortedData = ipl.BestEconomySort();
+		} catch (CSVException e) {
+			System.out.println(e.getMessage());
+		}
+		System.out.println(sortedData);
+		Wickets[] censusCsv = new Gson().fromJson(sortedData, Wickets[].class);
+		Assert.assertEquals("Shivam Dube", censusCsv[0].Player);
+	}
+
 }
